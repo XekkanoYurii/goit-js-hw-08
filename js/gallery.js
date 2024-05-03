@@ -71,7 +71,7 @@ const pairs = [];
 const imagesMarkup = pairs.map(pair => 
         `<li class="gallery-item">${pair.map(({ preview, original, description }) => 
             `<a class="gallery-link" href="${original}">
-            <img
+            <img 
             class="gallery-image"
             src="${preview}"
             data-source="${original}"
@@ -83,18 +83,14 @@ const imagesMarkup = pairs.map(pair =>
         </li>`
     ).join('');
 gallery.insertAdjacentHTML('afterbegin', imagesMarkup);
-    
-    gallery.addEventListener("click", selectImage);
-
-    function selectImage(event) {
-        event.preventDefault();
-        if (event.target.nodeName !== "IMG") {
-            return;
-        }
-        const selectedImage = event.target.dataset.source;
-        console.log(selectedImage);
-        let instance = basicLightbox.create(`
-        <img src="${selectedImage}" width="1112px" height="640px">
-    `)
+gallery.addEventListener("click", selectImage);
+function selectImage(event) {
+event.preventDefault();
+if (event.target.nodeName !== "IMG") {
+    return;
+}
+const selectedImage = event.target.dataset.source;
+ console.log(selectedImage);
+let instance = basicLightbox.create(`<img src="${selectedImage}" width="1112px" height="640px">`)
         instance.show()
     }
