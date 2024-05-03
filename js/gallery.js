@@ -69,24 +69,18 @@ const pairs = [];
         pairs.push(images.slice(i, i + 3));
     }
 const imagesMarkup = pairs.map(pair => 
-        `<li class="gallery-item">${pair.map(({ preview, original, description }) => 
-            `<a class="gallery-link" href="${original}">
-            <img 
-            class="gallery-image"
-            src="${preview}"
-            data-source="${original}"
-            alt="${description}"
-            />
-            </a>`)
-        .join('')}
-        
-        </li>`
-    ).join('');
+ `<li class="gallery-item">${pair.map(({ preview, original, description }) => 
+ `<a class="gallery-link" href="${original}">
+  <img 
+  class="gallery-image"
+  src="${preview}"
+  data-source="${original}"
+  alt="${description}"/></a>`).join('')}</li>`).join('');
 gallery.insertAdjacentHTML('afterbegin', imagesMarkup);
 gallery.addEventListener("click", selectImage);
-function selectImage(event) {
-event.preventDefault();
-if (event.target.nodeName !== "IMG") {
+ function selectImage(event) {
+ event.preventDefault();
+ if (event.target.nodeName !== "IMG") {
     return;
 }
 const selectedImage = event.target.dataset.source;
